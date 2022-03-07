@@ -2,7 +2,25 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://localhost/swag-shop');
+
+mongoose.connect(
+  
+  "mongodb+srv://mwaura:Furaha45mongo@cluster0.1utxg.mongodb.net/shop?retryWrites=true&w=majority",
+  
+  
+  {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+  }
+);
+
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error: "));
+db.once("`open", function () {
+  console.log("Connected successfully");
+});
 
 var Product = require('./model/product');
 var WishList = require('./model/wishlist');
