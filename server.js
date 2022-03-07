@@ -2,7 +2,25 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://localhost:27017/shop');
+
+mongoose.connect(
+  
+  "mongodb+srv://mwaura:Furaha45mongo@cluster0.1utxg.mongodb.net/shop?retryWrites=true&w=majority",
+  
+  
+  {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+  }
+);
+
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error: "));
+db.once("`open", function () {
+  console.log("Connected successfully");
+});
 
 var Product = require('./model/product');
 var WishList = require('./model/wishlist');
@@ -83,6 +101,8 @@ app.put('/wishlist/product/add', function(request, response) {
    })
 });
 
-app.listen(3004, function() {
-    console.log("Shop API running on port 3004...");
+port = process.env.PORT|| 3000
+
+app.listen(port, function() {
+    console.log("Swag Shop API running on port 3000...");
 });
