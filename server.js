@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://localhost/swag-shop');
+var db = mongoose.connect('mongodb://localhost:27017/shop');
 
 var Product = require('./model/product');
 var WishList = require('./model/wishlist');
@@ -14,6 +14,7 @@ app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Methods", "POST, GET");
   next();
 });
+
 
 
 app.use(bodyParser.json());
@@ -83,5 +84,5 @@ app.put('/wishlist/product/add', function(request, response) {
 });
 
 app.listen(3004, function() {
-    console.log("Swag Shop API running on port 3004...");
+    console.log("Shop API running on port 3004...");
 });
