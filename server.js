@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 mongoose.connect(
   
   "mongodb+srv://mwaura:Furaha45mongo@cluster0.1utxg.mongodb.net/shop?retryWrites=true&w=majority",
+ //"mongodb://localhost/shop",
   
   
   {
