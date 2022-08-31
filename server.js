@@ -2,10 +2,11 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+require('dotenv').config()
 
 mongoose.connect(
   
-  "mongodb+srv://mwaura:Furaha45mongo@cluster0.1utxg.mongodb.net/shop?retryWrites=true&w=majority",
+  `mongodb+srv://mwaura:${process.env.PASS}@cluster0.1utxg.mongodb.net/shop?retryWrites=true&w=majority`,
  //"mongodb://localhost/shop",
   
   
@@ -33,8 +34,6 @@ app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Methods", "POST, GET");
   next();
 });
-
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -102,8 +101,8 @@ app.put('/wishlist/product/add', function(request, response) {
    })
 });
 
-port = process.env.PORT|| 3000
+port = process.env.PORT|| 3005
 
 app.listen(port, function() {
-    console.log("Swag Shop API running on port 3000...");
+    console.log("Swag Shop API running on port 3005...");
 });
