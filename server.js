@@ -90,7 +90,7 @@ app.put('/wishlist/product/add', function(request, response) {
        if (err) {
            response.status(500).send({error:"Could not add item to wishlist"});
        } else {
-           WishList.update({_id:request.body.wishListId}, {$addToSet:{products: product._id}}, function(err, wishList) {
+           WishList.updateOne({_id:request.body.wishListId}, {$addToSet:{products: product._id}}, function(err, wishList) {
                if (err) {
                    response.status(500).send({error:"Could not add item to wishlist"});
                } else {
